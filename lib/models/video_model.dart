@@ -47,7 +47,7 @@ class VideoProvider with ChangeNotifier {
     final extractData = json.decode(response.body)['items'];
   }
 
-  if (extractData == null) {
+    if (extractData == null) {
       return;
     }
   _items = 
