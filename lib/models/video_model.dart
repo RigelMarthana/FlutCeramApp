@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http ;
+import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class VideoModel {
@@ -37,7 +37,7 @@ class VideoProvider with ChangeNotifier {
   }
 
   Future<void> getVideo(String requestKeyword) async {
-    final keyword = 'ustadz' + requestKeyword;
+    final keyword = 'ustadz ' + requestKeyword;
     final apiToken = 'AIzaSyDsA1BTGDyauE5DsxrJYjZLH1ZcefiL_bY';
     
 
@@ -45,16 +45,18 @@ class VideoProvider with ChangeNotifier {
         'https://www.googleapis.com/youtube/v3/search?part=snippet&eventType=live&relevanceLanguage=id&maxResults=25&q=$keyword&type=video&key=$apiToken';
     final response = await http.get(url);
     final extractData = json.decode(response.body)['items'];
-  }
+  
 
     if (extractData == null) {
       return;
     }
-  _items = 
-    extractData.map<VideoModel>((i) => VideoModel.fromJson(i)).toList();
-  notifyListeners();
+  _items =
+        extractData.map<VideoModel>((i) => VideoModel.fromJson(i)).toList();
+    notifyListeners();
 }
 
 VideoModel findVideo(String videoId) {
   return _items.firstWhere((q) => q.videoId == videoId);
+  
+  }
 }

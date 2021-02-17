@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Ceramah App',
         theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primarySwatch: Colors.lightBlue,
         ),
         home: VideoList(),
         routes: {
